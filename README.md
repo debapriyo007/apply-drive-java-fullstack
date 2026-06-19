@@ -45,18 +45,18 @@ The following diagram illustrates the network flow, security boundary, and servi
 
 ```mermaid
 graph TD
-    subgraph Client Tier [Client Tier]
+    subgraph ClientTier [Client Tier]
         PublicClient[Student Portal - React SPA]
         AdminClient[Admin Portal - React SPA]
     end
 
-    subgraph API Gateway / Router [Nginx Router]
+    subgraph RouterTier [Nginx Router]
         Router{Nginx Proxy / Docker}
         PublicClient -->|Path: /portal| Router
         AdminClient -->|Path: /admin| Router
     end
 
-    subgraph Application Tier [Spring Boot Backend]
+    subgraph BackendTier [Spring Boot Backend]
         API[Spring Boot REST Controllers]
         SecurityChain[Spring Security & JWT Filters]
         Services[Job, Company, User & Sync Services]
@@ -66,7 +66,7 @@ graph TD
         API <--> Services
     end
 
-    subgraph Infrastructure & Integrations [External Services]
+    subgraph InfrastructureTier [External Services]
         DB[(MySQL Relational DB)]
         Cloudinary[Cloudinary CDN Store]
         SMTP[Brevo SMTP Server]
@@ -79,9 +79,9 @@ graph TD
     end
 
     style Router fill:#646CFF,stroke:#fff,stroke-width:2px,color:#fff
-    style Client Tier fill:#1b1b1f,stroke:#333,stroke-width:1px,color:#fff
-    style Application Tier fill:#222,stroke:#6DB33F,stroke-width:2px,color:#fff
-    style Infrastructure & Integrations fill:#1b1b1f,stroke:#333,stroke-width:1px,color:#fff
+    style ClientTier fill:#1b1b1f,stroke:#333,stroke-width:1px,color:#fff
+    style BackendTier fill:#222,stroke:#6DB33F,stroke-width:2px,color:#fff
+    style InfrastructureTier fill:#1b1b1f,stroke:#333,stroke-width:1px,color:#fff
 ```
 
 ---
@@ -273,30 +273,48 @@ Run the Frontend container served by Nginx alongside the Backend container, mapp
 
 ## API Endpoint Specifications
 
-### 🔐 Authentication Operations
-*   `POST /api/v1/auth/register` — Create student account.
-*   `POST /api/v1/auth/login` — Authenticate student user, returns stateless JWT HttpOnly cookies (`accessToken`, `refreshToken`).
-*   `POST /api/v1/auth/refresh-token` — Request new `accessToken` using `refreshToken` cookie.
-*   `POST /api/v1/auth/logout` — Evict client auth cookies and terminate session.
+### Authentication Operations
 
-### 👤 Student Profiles (`/api/v1/users/**`)
-*   `GET /api/v1/users/me` — Fetch currently logged-in student profile details.
-*   `PUT /api/v1/users/me` — Update candidate profile metadata.
+| HTTP Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `POST` | `/api/v1/auth/register` | Create student account. |
+| `POST` | `/api/v1/auth/login` | Authenticate student user, returns stateless JWT HttpOnly cookies (`accessToken`, `refreshToken`). |
+| `POST` | `/api/v1/auth/refresh-token` | Request new `accessToken` using `refreshToken` cookie. |
+| `POST` | `/api/v1/auth/logout` | Evict client auth cookies and terminate session. |
 
-### 🏢 Partner Companies (`/api/v1/companies/**`)
-*   `GET /api/v1/companies` — Retrieve listing of partner employers.
-*   `POST /api/v1/companies` — Register a partner employer.
+### Student Profiles (`/api/v1/users/**`)
 
-### 💼 Job Board Operations (`/api/v1/jobs/**` & `/api/v1/public/jobs/**`)
-*   `GET /api/v1/public/jobs` — Paginated job listings search.
-*   `GET /api/v1/jobs/{id}` — Fetch detailed job specification page.
-*   `POST /api/v1/jobs/import` — Trigger the job scraper and ingestion feed engine.
+| HTTP Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/v1/users/me` | Fetch currently logged-in student profile details. |
+| `PUT` | `/api/v1/users/me` | Update candidate profile metadata. |
 
-### ☁️ Cloud File Uploads (`/api/v1/upload/**`)
-*   `POST /api/v1/upload/resume` — Process resume PDF uploads directly to Cloudinary.
-*   `POST /api/v1/upload/image` — Handle avatar and company brand logo uploads to Cloudinary.
+### Partner Companies (`/api/v1/companies/**`)
 
-### 🛡️ Admin Core Controllers (`/api/v1/admin/**`)
-*   `POST /api/v1/admin/auth/login` — Authenticate administrative dashboard privileges.
-*   `GET /api/v1/admin/dashboard/analytics` — Fetch aggregated metrics (sign-up trends, active counts, jobs categories).
-*   `PATCH /api/v1/admin/users/{id}/status` — Toggle student account activation status (active vs. blocked).
+| HTTP Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/v1/companies` | Retrieve listing of partner employers. |
+| `POST` | `/api/v1/companies` | Register a partner employer. |
+
+### Job Board Operations (`/api/v1/jobs/**` & `/api/v1/public/jobs/**`)
+
+| HTTP Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/v1/public/jobs` | Paginated job listings search. |
+| `GET` | `/api/v1/jobs/{id}` | Fetch detailed job specification page. |
+| `POST` | `/api/v1/jobs/import` | Trigger the job scraper and ingestion feed engine. |
+
+### Cloud File Uploads (`/api/v1/upload/**`)
+
+| HTTP Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `POST` | `/api/v1/upload/resume` | Process resume PDF uploads directly to Cloudinary. |
+| `POST` | `/api/v1/upload/image` | Handle avatar and company brand logo uploads to Cloudinary. |
+
+### Admin Core Controllers (`/api/v1/admin/**`)
+
+| HTTP Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `POST` | `/api/v1/admin/auth/login` | Authenticate administrative dashboard privileges. |
+| `GET` | `/api/v1/admin/dashboard/analytics` | Fetch aggregated metrics (sign-up trends, active counts, jobs categories). |
+| `PATCH` | `/api/v1/admin/users/{id}/status` | Toggle student account activation status (active vs. blocked). |
