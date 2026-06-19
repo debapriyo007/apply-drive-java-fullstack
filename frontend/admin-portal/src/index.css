@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 antialiased;
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+/* Reset inner input styling for HeroUI Inputs to prevent browser/autofill visual bugs */
+input[data-slot="input"] {
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Handle Autofill styles gracefully */
+input[data-slot="input"]:-webkit-autofill,
+input[data-slot="input"]:-webkit-autofill:hover, 
+input[data-slot="input"]:-webkit-autofill:focus, 
+input[data-slot="input"]:-webkit-autofill:active {
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: inherit !important;
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: none !important;
+}
+
+/* Fix Recharts text and legend colors in dark mode */
+.dark .recharts-text {
+  fill: #e4e4e7 !important;
+}
+.dark .recharts-legend-item-text {
+  color: #e4e4e7 !important;
+}
+.recharts-legend-item-text {
+  color: #3f3f46 !important;
+}
+.recharts-default-tooltip {
+  background-color: #ffffff !important;
+  border-color: #e4e4e7 !important;
+}
+.dark .recharts-default-tooltip {
+  background-color: #09090b !important;
+  border-color: #27272a !important;
+}
+

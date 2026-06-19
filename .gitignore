@@ -1,0 +1,34 @@
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDE Files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Build / Dependency Targets
+**/target/
+**/node_modules/
+**/dist/
+**/build/
+**/out/
+**/bin/
+
+# Java / Spring Boot Class files
+*.class
+*.log
+*.log.*
+*.temp
+*.tmp
+
+# Credentials & Configurations
+**/src/main/resources/application.yml
+**/src/main/resources/application.properties
+.env
+.env.local
+.env.*.local
+
+# Git / Task Artifacts (excluding brain artifacts if not needed, but they are in ~/.gemini so they won't be in the project dir anyway)
