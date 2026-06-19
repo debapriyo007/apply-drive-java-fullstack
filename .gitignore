@@ -31,4 +31,17 @@ Thumbs.db
 .env.local
 .env.*.local
 
-# Git / Task Artifacts (excluding brain artifacts if not needed, but they are in ~/.gemini so they won't be in the project dir anyway)
+# Exclude all frontend files except services/api files
+/frontend/*
+!/frontend/public-portal/
+!/frontend/admin-portal/
+
+/frontend/public-portal/*
+/frontend/admin-portal/*
+!/frontend/public-portal/src/
+!/frontend/admin-portal/src/
+
+/frontend/public-portal/src/*
+/frontend/admin-portal/src/*
+!/frontend/public-portal/src/services/
+!/frontend/admin-portal/src/services/
