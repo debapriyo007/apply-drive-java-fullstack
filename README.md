@@ -46,36 +46,36 @@ The following diagram illustrates the network flow, security boundary, and servi
 ```mermaid
 graph TD
     subgraph ClientTier [Client Tier]
-        PublicClient[Student Portal - React SPA]
-        AdminClient[Admin Portal - React SPA]
+        PublicClient["Student Portal - React SPA"]
+        AdminClient["Admin Portal - React SPA"]
     end
 
     subgraph RouterTier [Nginx Router]
-        Router{Nginx Proxy / Docker}
-        PublicClient -->|Path: /portal| Router
-        AdminClient -->|Path: /admin| Router
+        Router{"Nginx Proxy / Docker"}
+        PublicClient -->|"Path: /portal"| Router
+        AdminClient -->|"Path: /admin"| Router
     end
 
     subgraph BackendTier [Spring Boot Backend]
-        API[Spring Boot REST Controllers]
-        SecurityChain[Spring Security & JWT Filters]
-        Services[Job, Company, User & Sync Services]
+        API["Spring Boot REST Controllers"]
+        SecurityChain["Spring Security & JWT Filters"]
+        Services["Job, Company, User & Sync Services"]
         
-        Router -->|API Proxy: /api/v1/**| API
+        Router -->|"API Proxy: /api/v1/**"| API
         API <--> SecurityChain
         API <--> Services
     end
 
     subgraph InfrastructureTier [External Services]
-        DB[(MySQL Relational DB)]
-        Cloudinary[Cloudinary CDN Store]
-        SMTP[Brevo SMTP Server]
-        Scraper[External Off-Campus Feeds]
+        DB[("MySQL Relational DB")]
+        Cloudinary["Cloudinary CDN Store"]
+        SMTP["Brevo SMTP Server"]
+        Scraper["External Off-Campus Feeds"]
 
-        Services <-->|Spring Data JPA / Hikari| DB
-        Services --->|Upload API / SDK| Cloudinary
-        Services -.->|Transaction Mails| SMTP
-        Services --->|Ingestion Job| Scraper
+        Services <-->|"Spring Data JPA / Hikari"| DB
+        Services --->|"Upload API / SDK"| Cloudinary
+        Services -.->|"Transaction Mails"| SMTP
+        Services --->|"Ingestion Job"| Scraper
     end
 
     style Router fill:#646CFF,stroke:#fff,stroke-width:2px,color:#fff
