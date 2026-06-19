@@ -1,4 +1,4 @@
-# ApplyDrive: Job Aggregator & Off-Campus Hiring Platform
+# ApplyDrive: Job Aggregator Hiring Platform
 
 ApplyDrive is a high-performance, enterprise-grade job aggregator and off-campus recruitment platform designed to curate, organize, and streamline off-campus hiring opportunities. The application is built using a highly secure decoupled architecture featuring React SPA client portals and a robust Spring Boot REST API backend.
 
