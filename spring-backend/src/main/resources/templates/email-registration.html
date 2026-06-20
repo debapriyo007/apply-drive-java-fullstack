@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Email</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f6f9fc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;">
+        <tr>
+            <td align="center" style="padding: 40px 10px 40px 10px; background-color: #f6f9fc;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 500px; background-color: #ffffff; border: 1px solid #e8eef3; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); overflow: hidden;">
+                    <!-- Header -->
+                    <tr>
+                        <td align="center" style="padding: 30px 20px 20px 20px; background-color: #ffffff; border-bottom: 1px solid #f0f4f8;">
+                            <h2 style="margin: 0; color: #1e293b; font-size: 24px; font-weight: 800; letter-spacing: -0.5px;">Apply<span style="color: #6366f1;">Drive</span></h2>
+                        </td>
+                    </tr>
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 35px 30px 20px 30px; background-color: #ffffff;">
+                            <h3 style="margin: 0 0 16px 0; color: #1e293b; font-size: 18px; font-weight: 700;">Verify Your Email Address</h3>
+                            <p style="margin: 0 0 20px 0; color: #64748b; font-size: 14px; line-height: 1.6;">Dear {{fullName}},</p>
+                            <p style="margin: 0 0 24px 0; color: #64748b; font-size: 14px; line-height: 1.6;">Thank you for registering on ApplyDrive! To complete your registration and activate your account, please verify your email address using the following 6-digit One-Time Password (OTP):</p>
+                            
+                            <!-- OTP Box -->
+                            <div align="center" style="margin: 30px 0 30px 0;">
+                                <div style="display: inline-block; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 30px; letter-spacing: 6px; font-size: 32px; font-weight: 800; color: #0f172a; text-indent: 6px;">
+                                    {{otp}}
+                                </div>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; color: #64748b; font-size: 13px; line-height: 1.6;">This OTP is valid for <strong>10 minutes</strong>. For security reasons, please do not share this code with anyone.</p>
+                            <p style="margin: 0 0 24px 0; color: #94a3b8; font-size: 12px; line-height: 1.6;">If you did not request this verification, you can safely ignore this email.</p>
+                        </td>
+                    </tr>
+                    <!-- Footer -->
+                    <tr>
+                        <td align="center" style="padding: 24px 30px 30px 30px; background-color: #f8fafc; border-top: 1px solid #f1f5f9;">
+                            <p style="margin: 0 0 6px 0; color: #64748b; font-size: 12px; font-weight: 600;">The ApplyDrive Team</p>
+                            <p style="margin: 0; color: #94a3b8; font-size: 11px;">&copy; 2026 ApplyDrive. All rights reserved.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

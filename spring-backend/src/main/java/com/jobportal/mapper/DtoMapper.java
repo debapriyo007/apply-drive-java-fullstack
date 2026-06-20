@@ -1,10 +1,15 @@
 package com.jobportal.mapper;
 
-import com.jobportal.dto.request.CategoryDto;
-import com.jobportal.dto.request.CompanyDto;
-import com.jobportal.dto.request.UserProfileDto;
-import com.jobportal.dto.response.JobResponse;
 import com.jobportal.entity.*;
+import com.jobportal.dto.category.CategoryDto;
+import com.jobportal.dto.company.CompanyDto;
+import com.jobportal.dto.user.UserProfileDto;
+import com.jobportal.dto.job.JobResponse;
+import com.jobportal.entity.Category;
+import com.jobportal.entity.Company;
+import com.jobportal.entity.User;
+import com.jobportal.entity.Role;
+import com.jobportal.entity.Job;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
